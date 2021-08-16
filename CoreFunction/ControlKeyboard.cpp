@@ -10,7 +10,7 @@
 using namespace csric;
 using namespace std;
 
-KeyNPositionX key_n_position_x[] = {
+KeyNPositionX key_n_position_x[87] = {
 //第一行
 {RZKEY::RZKEY_ESC,0},
 {RZKEY::RZKEY_F1,2},
@@ -106,7 +106,21 @@ KeyNPositionX key_n_position_x[] = {
 {RZKEY::RZKEY_RIGHT,17.5}
 };
 
-int KeyQueue[] = {
+int KeyQueue[87] = {
+	//第六行
+	RZKEY::RZKEY_LCTRL,
+	RZKEY::RZKEY_LWIN,
+	RZKEY::RZKEY_LALT,
+	RZKEY::RZKEY_SPACE,
+	RZKEY::RZKEY_RALT,
+	RZKEY::RZKEY_FN,
+	RZKEY::RZKEY_RMENU,
+	RZKEY::RZKEY_RCTRL,
+	RZKEY::RZKEY_LEFT,
+	RZKEY::RZKEY_DOWN,
+	RZKEY::RZKEY_RIGHT,
+	//第五行
+	RZKEY::RZKEY_LSHIFT,
 	RZKEY::RZKEY_Z,
 	RZKEY::RZKEY_X,
 	RZKEY::RZKEY_C,
@@ -117,6 +131,10 @@ int KeyQueue[] = {
 	RZKEY::RZKEY_OEM_9,
 	RZKEY::RZKEY_OEM_10,
 	RZKEY::RZKEY_OEM_11,
+	RZKEY::RZKEY_RSHIFT,
+	RZKEY::RZKEY_UP,
+	//第四行
+	RZKEY::RZKEY_CAPSLOCK,
 	RZKEY::RZKEY_A,
 	RZKEY::RZKEY_S,
 	RZKEY::RZKEY_D,
@@ -128,6 +146,9 @@ int KeyQueue[] = {
 	RZKEY::RZKEY_L,
 	RZKEY::RZKEY_OEM_7,
 	RZKEY::RZKEY_OEM_8,
+	RZKEY::RZKEY_ENTER,
+	//第三行
+	RZKEY::RZKEY_TAB,
 	RZKEY::RZKEY_Q,
 	RZKEY::RZKEY_W,
 	RZKEY::RZKEY_E,
@@ -140,6 +161,12 @@ int KeyQueue[] = {
 	RZKEY::RZKEY_P,
 	RZKEY::RZKEY_OEM_4,
 	RZKEY::RZKEY_OEM_5,
+	RZKEY::RZKEY_OEM_6,
+	RZKEY::RZKEY_DELETE,
+	RZKEY::RZKEY_END,
+	RZKEY::RZKEY_PAGEDOWN,
+	//第二行
+	RZKEY::RZKEY_OEM_1,
 	RZKEY::RZKEY_1,
 	RZKEY::RZKEY_2,
 	RZKEY::RZKEY_3,
@@ -151,7 +178,28 @@ int KeyQueue[] = {
 	RZKEY::RZKEY_9,
 	RZKEY::RZKEY_0,
 	RZKEY::RZKEY_OEM_2,
-	RZKEY::RZKEY_OEM_3
+	RZKEY::RZKEY_OEM_3,
+	RZKEY::RZKEY_BACKSPACE,
+	RZKEY::RZKEY_INSERT,
+	RZKEY::RZKEY_HOME,
+	RZKEY::RZKEY_PAGEUP,
+	//第一行
+	RZKEY::RZKEY_ESC,
+	RZKEY::RZKEY_F1,
+	RZKEY::RZKEY_F2,
+	RZKEY::RZKEY_F3,
+	RZKEY::RZKEY_F4,
+	RZKEY::RZKEY_F5,
+	RZKEY::RZKEY_F6,
+	RZKEY::RZKEY_F7,
+	RZKEY::RZKEY_F8,
+	RZKEY::RZKEY_F9,
+	RZKEY::RZKEY_F10,
+	RZKEY::RZKEY_F11,
+	RZKEY::RZKEY_F12,
+	RZKEY::RZKEY_PRINTSCREEN,
+	RZKEY::RZKEY_SCROLL,
+	RZKEY::RZKEY_PAUSE
 };
 
 const int ControlKeyboard::GetColorArraySize2D(EChromaSDKDevice2DEnum device)
@@ -219,13 +267,17 @@ void ControlKeyboard::Init() {
 	nkeys = sizeof(key_n_position_x) / sizeof(KeyNPositionX);
 }
 void ControlKeyboard::SetFreqVisualizer_SingleKey(float* value, int length) {
-	for (int i = 0; i < length  && i < 45; i++) {
-		float trueValue = value[i];
+	float expand = (float)length / (float)(nkeys);
+	for (int i = 0; i < nkeys; i++) {
+		int pos = (int)(i * expand);
+		if (pos >= length)pos = length - 1;
+		float trueValue = value[pos];
 		const int thres = 30;
 		if (trueValue > thres)trueValue += trueValue - thres;
 		trueValue /= (100 - thres);
 		trueValue -= 0.1;
 		if (trueValue < 0.01)trueValue = 0.0001;
+		if (trueValue > 0.9999)trueValue = 0.9999;
 		Color finalColor = {
 			trueValue * color1.R + (1 - trueValue) * color2.R,
 			trueValue * color1.G + (1 - trueValue) * color2.G,

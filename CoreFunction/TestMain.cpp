@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<math.h>
+#include <thread>
 #include "AudioCapture.h"
 #include "AudioProcess.h"
 #include "ControlKeyboard.h"
@@ -8,12 +9,33 @@
 using namespace std;
 using namespace csric;
 
-extern "C" __declspec(dllexport) int FreqAnalyze(int* nHistograms, float** value);
 
+int G_nHistograms;
+float* G_slowValue;
+
+void ConstrolKeyboardFunction() {
+	ControlKeyboard controlKeyboard;
+	//ListenLoop
+	LARGE_INTEGER nFreq;
+	LARGE_INTEGER nPastTime;
+	LARGE_INTEGER nNowTime;
+	QueryPerformanceFrequency(&nFreq);
+	while (1) {
+		QueryPerformanceCounter(&nPastTime);//获取初始时间
+		controlKeyboard.SetFreqVisualizer_SingleKey(G_slowValue, G_nHistograms);
+		QueryPerformanceCounter(&nNowTime);
+		int delay = KEYBOARD_FRAME_TIME - (nNowTime.QuadPart - nPastTime.QuadPart) * 1000 / nFreq.QuadPart;
+		if (delay > 0) {
+			Sleep(delay);
+		}
+	}
+}
+
+extern "C" __declspec(dllexport) int FreqAnalyze(int* nHistograms, float** value);
 __declspec(dllexport) int FreqAnalyze(int* nHistograms, float** value) {
 	AudioProcess audioProcess;
 	AudioCapture audioCapture;
-	ControlKeyboard controlKeyboard;
+
 
 	bool bDone = false;
 	audioCapture.SetUpAudioCapture(&audioProcess);
@@ -21,38 +43,20 @@ __declspec(dllexport) int FreqAnalyze(int* nHistograms, float** value) {
 	LARGE_INTEGER nFreq;
 	LARGE_INTEGER nPastTime;
 	LARGE_INTEGER nNowTime;
-	//keyboard ListenLoop
-	LARGE_INTEGER kPastTime;
 
 	QueryPerformanceFrequency(&nFreq);
-	QueryPerformanceCounter(&kPastTime);
-
 	*nHistograms = audioProcess.nHistograms;
+	G_nHistograms = *nHistograms;
 	*value = new float[audioProcess.nHistograms];
-	float* slowValue = new float[audioProcess.nHistograms];
-	memset(slowValue, 0, sizeof(float) * *nHistograms);
+	G_slowValue = new float[audioProcess.nHistograms];
+	memset(G_slowValue, 0, sizeof(float) * *nHistograms);
+	std::thread thread1(ConstrolKeyboardFunction);
 	while (1) {
 		QueryPerformanceCounter(&nPastTime);//获取初始时间
 		audioCapture.ListenOnce(&audioProcess);
 		audioProcess.CalculateLogFreq(*value);
-		//在延时到达设定之前保持循环阻塞
-		//不行，这种方式对cpu占用太大了,还是用Sleep()吧..
-		/*
-		do {
-			QueryPerformanceCounter(&nNowTime);
-		} while (
-			(double)(nNowTime.QuadPart - nPastTime.QuadPart)
-			/ (double)nFreq.QuadPart * 1000
-			< FRAME_TIME
-			);
-			*/
-		QueryPerformanceCounter(&nNowTime);
-		if ((nNowTime.QuadPart - kPastTime.QuadPart) * 1000 / nFreq.QuadPart > KEYBOARD_FRAME_TIME){
-			kPastTime = nNowTime;
-			for (int i = 0; i < *nHistograms; i++) {
-				slowValue[i] = (*value)[i]*0.85 > slowValue[i] ? (*value)[i] : slowValue[i] * SLOW_RATIO;
-			}
-			controlKeyboard.SetFreqVisualizer_SingleKey(slowValue, *nHistograms);
+		for (int i = 0; i < *nHistograms; i++) {
+			G_slowValue[i] = (*value)[i]*0.85 > G_slowValue[i] ? (*value)[i] : G_slowValue[i] * SLOW_RATIO;
 		}
 		QueryPerformanceCounter(&nNowTime);
 		int delay = FRAME_TIME - (nNowTime.QuadPart - nPastTime.QuadPart) * 1000 / nFreq.QuadPart;

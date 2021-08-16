@@ -43,7 +43,7 @@ namespace csric {
 			memset(colorsKeyboard, 0, sizeof(int) * sizeKeyboard);
 			tempColorsKeyboard = new int[sizeKeyboard];
 
-			color1 = { 0,140,180 };
+			color1 = { 0,140,230 };
 			color2 = { 0,0,0 };
 			keyboard_length = 19;
 		}

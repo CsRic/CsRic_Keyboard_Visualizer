@@ -18,7 +18,7 @@ HRESULT AudioProcess::SetFormat(WAVEFORMATEX* pwfx) {
 	density = FREQ_DENSITY;
 	octaves = FREQ_OCTAVES;
 	nHistograms = density * octaves;
-	Q = 1.0f / (powf(2.0, 1.0 / density) - 1);
+	Q = 1.2f / (powf(2.0, 1.0 / density) - 1);
 
 	//set window length
 	windows = new int[nHistograms];
@@ -126,15 +126,16 @@ void AudioProcess::CalculateLogFreq(float* value) {
 		double coef_2 = coef_1 / windows[k];
 		double cosPart = 0;
 		double sinPart = 0;
+		double windowCoef = 2.0 * PI / ((double)window - 1);
 		for (int m = 0; m < window; m++) {
 			int pos = (queueMaxLength - window + queueHead + m) % queueMaxLength;
 			double coef_3 = ((double)lPointDataQueue[pos] + (double)rPointDataQueue[pos]) * //X(m)
-				(0.42 - 0.50 * cos(2.0 * PI * m / ((double)window - 1))
-					+ 0.08 * (4.0 * PI * m / ((double)window - 1)));  //W_Nk(m), Blackman
+				(0.42 - 0.50 * cos(windowCoef * m)
+					+ 0.16 * (windowCoef * m));  //W_Nk(m), Blackman
 			cosPart += coef_3 * cos(coef_2 * m);
 			sinPart += coef_3 * sin(coef_2 * m);
 		}
-		double temp = sqrt(cosPart * cosPart + sinPart * sinPart);
+		double temp = 1 / LegendaryRSqrt(cosPart * cosPart + sinPart * sinPart);
 		temp /= window;
 		if (temp < VALUE_THRESHOLD) temp = 0;
 		value[k] = (float)temp * addWeight[k];

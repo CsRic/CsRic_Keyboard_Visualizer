@@ -85,7 +85,7 @@ namespace CsRic_Keyboard_Visualizer
                 double[] temp2 = { valueSlower[i] };
 
                 series.Points[i].YValues = temp2;
-                textBox1.Text = (*value)[0].ToString();
+                textBox1.Text = (*nHistograms).ToString();
             }
         }
         private void SetChart1()
