@@ -1,0 +1,9 @@
+﻿  AudioProcess.cpp
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.h(26,36): warning C4305: 'initializing': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.h(36,1): warning C4305: '=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(21,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(71,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(72,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(109,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(117,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  CoreFunction.vcxproj -> F:\VS_Projects\CsRic_Keyboard_Visualizer\x64\Debug\CoreFunction.exe

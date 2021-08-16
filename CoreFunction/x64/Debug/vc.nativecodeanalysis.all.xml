@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\</FILEPATH>
+      <FILENAME>AudioCapture.cpp</FILENAME>
+      <LINE>21</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: 'CoInitializeEx'.</DESCRIPTION>
+    <FUNCTION>csric::AudioCapture::SetUpAudioCapture</FUNCTION>
+    <DECORATED>?SetUpAudioCapture@AudioCapture@csric@@QEAAJPEAVAudioProcess@2@@Z</DECORATED>
+    <FUNCLINE>18</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\</FILEPATH>
+      <FILENAME>AudioCapture.h</FILENAME>
+      <LINE>44</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'csric::AudioCapture::hnsActualDuration' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>csric::AudioCapture::{ctor}</FUNCTION>
+    <DECORATED>??0AudioCapture@csric@@QEAA@XZ</DECORATED>
+    <FUNCLINE>44</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>csric::AudioCapture::hnsActualDuration</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>
