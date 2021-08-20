@@ -44,7 +44,7 @@ namespace csric {
 			tempColorsKeyboard = new int[sizeKeyboard];
 
 			color1 = { 0,140,230 };
-			color2 = { 0,0,0 };
+			color2 = { 100,0,0 };
 			keyboard_length = 19;
 		}
 		void SetFreqVisualizer_FullHorizonal(float* value, int length);

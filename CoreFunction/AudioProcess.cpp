@@ -18,7 +18,7 @@ HRESULT AudioProcess::SetFormat(WAVEFORMATEX* pwfx) {
 	density = FREQ_DENSITY;
 	octaves = FREQ_OCTAVES;
 	nHistograms = density * octaves;
-	Q = 1.2f / (powf(2.0, 1.0 / density) - 1);
+	Q = 1.0f / (powf(2.0, 1.0 / density) - 1);
 
 	//set window length
 	windows = new int[nHistograms];

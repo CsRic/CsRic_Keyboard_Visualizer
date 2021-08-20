@@ -46,6 +46,7 @@ namespace CsRic_Keyboard_Visualizer
         private void Form1_Load(object sender, EventArgs e)
         {
             FormClosed += new System.Windows.Forms.FormClosedEventHandler(Form1_Close);
+            SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -68,6 +69,26 @@ namespace CsRic_Keyboard_Visualizer
         Series series;
         float[] valueSlower;
         Thread thread1;
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if(WindowState == FormWindowState.Minimized)
+            {
+                //将程序从任务栏移除显示
+                this.ShowInTaskbar = false;
+                //隐藏窗口
+                this.Visible = false;
+                //显示托盘图标
+                notifyIcon1.Visible = true;
+
+                //停用可视化柱状图
+                timer1.Enabled = false;
+            }
+            else
+            {
+                timer1.Enabled = true;
+            }
+        }
 
         private void CalculateValue()
         {
@@ -121,6 +142,25 @@ namespace CsRic_Keyboard_Visualizer
             Marshal.FreeHGlobal((IntPtr)nHistograms);
             Marshal.FreeHGlobal((IntPtr)value);
             System.Environment.Exit(0);
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //设置程序允许显示在任务栏
+
+            this.ShowInTaskbar = true;
+
+            //设置窗口可见
+
+            this.Visible = true;
+
+            //设置窗口状态
+
+            this.WindowState = FormWindowState.Normal;
+
+            //设置窗口为活动状态，防止被其他窗口遮挡。
+
+            this.Activate();
         }
     }
 }
