@@ -1,25 +1,54 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  AudioCapture.cpp
-  AudioProcess.cpp
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(21,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(33,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(35,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(36,52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(36,76): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(39,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(84,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(85,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\AudioProcess.cpp(138,54): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  TestMain.cpp
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.h(26,25): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\TestMain.cpp(27,13): warning C4244: 'initializing': conversion from 'LONGLONG' to 'int', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\TestMain.cpp(59,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\TestMain.cpp(62,13): warning C4244: 'initializing': conversion from 'LONGLONG' to 'int', possible loss of data
+  ControlKeyboard.cpp
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.h(32,25): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(15,46): warning C4305: '+=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(16,48): warning C4305: '-=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(18,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(19,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(24,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(25,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(28,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(30,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(129,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(238,24): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(250,19): warning C4305: '-=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(251,42): warning C4305: '=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(254,31): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(254,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(255,31): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(255,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(256,31): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(256,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(301,19): warning C4305: '-=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(302,42): warning C4305: '=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(303,44): warning C4305: '=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(307,31): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(307,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(308,31): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(308,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(309,31): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(309,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(321,49): warning C4305: '+=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(322,51): warning C4305: '-=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(324,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(325,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(330,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(331,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(334,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(336,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(341,49): warning C4305: '+=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(342,51): warning C4305: '-=': truncation from 'double' to 'float'
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(344,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(345,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(350,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(351,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(354,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\VS_Projects\CsRic_Keyboard_Visualizer\CoreFunction\ControlKeyboard.cpp(356,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
      Creating library F:\VS_Projects\CsRic_Keyboard_Visualizer\\CsRic_Keyboard_Visualizer\bin\Release\CoreFunction.lib and object F:\VS_Projects\CsRic_Keyboard_Visualizer\\CsRic_Keyboard_Visualizer\bin\Release\CoreFunction.exp
   Generating code
-  2 of 69 functions ( 2.9%) were compiled, the rest were copied from previous compilation.
+  1 of 77 functions ( 1.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   CoreFunction.vcxproj -> F:\VS_Projects\CsRic_Keyboard_Visualizer\\CsRic_Keyboard_Visualizer\bin\Release\CoreFunction.dll
   复制了 0 个文件

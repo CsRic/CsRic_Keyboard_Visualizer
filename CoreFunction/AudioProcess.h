@@ -22,6 +22,7 @@ namespace csric {
 		int octaves = FREQ_OCTAVES;
 		int freqMin = FREQ_MIN;
 		float Q = 1;
+
 		//misc
 		float* addWeight;
 	public:
@@ -50,6 +51,7 @@ namespace csric {
 		HRESULT SetFormat(WAVEFORMATEX* pwfx);
 		void PrintStream();//≤‚ ‘”√
 		void CalculateLogFreq(float* value);
+		float AvePeak();
 	};
 
 

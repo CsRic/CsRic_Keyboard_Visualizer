@@ -13,3 +13,5 @@
 #define FREQ_HIGH_BOOST 0.2
 #define VALUE_THRESHOLD 0.00001
 #define SLOW_RATIO 0.9
+//color
+

@@ -9,6 +9,28 @@
 #include <thread>
 using namespace csric;
 using namespace std;
+ 
+Color FrameToColor(float colorFrame,int max) {
+	Color color;
+	while (colorFrame < 0.01)colorFrame += 359.9;
+	while (colorFrame > 359.99)colorFrame -= 359.9;
+	if (colorFrame <= 120.01) {
+		color.R = (int)max * (1 - colorFrame / 120);
+		color.G = (int)max * (colorFrame / 120);
+		color.B = 0;
+	}
+	else if (colorFrame <= 240.01) {
+		color.R = 0;
+		color.G = (int)max * (1 - (colorFrame - 120) / 120);
+		color.B = (int)max * ((colorFrame - 120) / 120);
+	}
+	else {
+		color.R = (int)max * ((colorFrame - 240) / 120);
+		color.G = 0;
+		color.B = (int)max * (1 - (colorFrame - 240) / 120);
+	}
+	return color;
+}
 
 KeyNPositionX key_n_position_x[87] = {
 //第一行
@@ -227,10 +249,11 @@ void ControlKeyboard::SetFreqVisualizer_FullHorizonal(float* value, int length) 
 		
 		trueValue -= 0.2;
 		if (trueValue < 0.01)trueValue = 0.0001;
+		Color changedColor = FrameToColor(color1Frame + key_n_position_x[i].x * 9, color1Max);
 		Color finalColor = {
-			trueValue * color1.R + (1 - trueValue) * color2.R,
-			trueValue * color1.G + (1 - trueValue) * color2.G,
-			trueValue * color1.B + (1 - trueValue) * color2.B
+			trueValue * changedColor.R + (1 - trueValue) * color2.R,
+			trueValue * changedColor.G + (1 - trueValue) * color2.G,
+			trueValue * changedColor.B + (1 - trueValue) * color2.B
 		};
 		int finalColorInt = ChromaAnimationAPI::GetRGB(finalColor.R, finalColor.G, finalColor.B);
 		colorsKeyboard[Keyboard::MAX_COLUMN * HIBYTE(key_n_position_x[i].key) + LOBYTE(key_n_position_x[i].key)] = finalColorInt;
@@ -278,14 +301,59 @@ void ControlKeyboard::SetFreqVisualizer_SingleKey(float* value, int length) {
 		trueValue -= 0.1;
 		if (trueValue < 0.01)trueValue = 0.0001;
 		if (trueValue > 0.9999)trueValue = 0.9999;
+		//采用渐变的主颜色。根据color1，并随着队列渐变
+		Color changedColor = FrameToColor(color1Frame + 0.3f * i, color1Max);
 		Color finalColor = {
-			trueValue * color1.R + (1 - trueValue) * color2.R,
-			trueValue * color1.G + (1 - trueValue) * color2.G,
-			trueValue * color1.B + (1 - trueValue) * color2.B
+			trueValue * changedColor.R + (1 - trueValue) * color2.R,
+			trueValue * changedColor.G + (1 - trueValue) * color2.G,
+			trueValue * changedColor.B + (1 - trueValue) * color2.B
 		};
 		int finalColorInt = ChromaAnimationAPI::GetRGB(finalColor.R, finalColor.G, finalColor.B);
 		colorsKeyboard[Keyboard::MAX_COLUMN * HIBYTE(KeyQueue[i]) + LOBYTE(KeyQueue[i])] = finalColorInt;
 	}
 	ChromaAnimationAPI::SetCustomColorFlag2D((int)EChromaSDKDevice2DEnum::DE_Keyboard, colorsKeyboard);
 	ChromaAnimationAPI::SetEffectKeyboardCustom2D((int)EChromaSDKDevice2DEnum::DE_Keyboard, colorsKeyboard);
+}
+
+void ControlKeyboard::IterateColorFrame(float speed,int layer) {
+	if (layer == 1) {
+		color1Frame += speed;
+		while (color1Frame < 0.01)color1Frame += 359.9;
+		while (color1Frame > 359.99)color1Frame -= 359.9;
+		if (color1Frame <= 120.01) {
+			color1.R = (int)color1Max * (1 - color1Frame / 120);
+			color1.G = (int)color1Max * (color1Frame / 120);
+			color1.B = 0;
+		}
+		else if (color1Frame <= 240.01) {
+			color1.R = 0;
+			color1.G = (int)color1Max * (1 - (color1Frame - 120) / 120);
+			color1.B = (int)color1Max * ((color1Frame - 120) / 120);
+		}
+		else {
+			color1.R = (int)color1Max * ((color1Frame - 240) / 120);
+			color1.G = 0;
+			color1.B = (int)color1Max * ( 1 - (color1Frame - 240) / 120);
+		}
+	}
+	else if (layer == 2) {
+		color2Frame += speed;
+		while (color2Frame < 0.01)color2Frame += 359.9;
+		while (color2Frame > 359.99)color2Frame -= 359.9;
+		if (color2Frame <= 120.01) {
+			color2.R = (int)color2Max * (1 - color2Frame / 120);
+			color2.G = (int)color2Max * (color2Frame / 120);
+			color2.B = 0;
+		}
+		else if (color2Frame <= 240.01) {
+			color2.R = 0;
+			color2.G = (int)color2Max * (1 - (color2Frame - 120) / 120);
+			color2.B = (int)color2Max * ((color2Frame - 120) / 120);
+		}
+		else {
+			color2.R = (int)color2Max * ((color2Frame - 240) / 120);
+			color2.G = 0;
+			color2.B = (int)color2Max * (1 - (color2Frame - 240) / 120);
+		}
+	}
 }

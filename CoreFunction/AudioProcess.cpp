@@ -178,4 +178,20 @@ void AudioProcess::CalculateLogFreq(float* value) {
 	
 }*/
 
+float AudioProcess::AvePeak() {
+	int length = 512;
+	if (waveFormatex.nChannels == 2) {
+		if (waveFormatex.nBlockAlign == 8) {
+			float leftMax = 0;
+			float rightMax = 0;
+			for (UINT32 i = 0; i < length; i++) {
+				int pos = (queueMaxLength + queueHead - length + i) % queueMaxLength;
+				leftMax = fabs(lPointDataQueue[pos]) > leftMax ? fabs(lPointDataQueue[pos]) : leftMax;
+				rightMax = fabs(rPointDataQueue[pos]) > rightMax ? fabs(rPointDataQueue[pos]) : rightMax;
+			}
+			if (leftMax > rightMax)return leftMax;
+			else return rightMax;
+		}
+	}
+}
 

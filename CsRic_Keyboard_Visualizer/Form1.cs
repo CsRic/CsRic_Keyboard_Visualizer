@@ -137,6 +137,7 @@ namespace CsRic_Keyboard_Visualizer
         }
         private void Form1_Close(object sender, EventArgs e)
         {
+            notifyIcon1.Visible = false;
             timer1.Enabled = false;
             thread1.Abort();
             Marshal.FreeHGlobal((IntPtr)nHistograms);
